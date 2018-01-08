@@ -12,7 +12,7 @@
       "type": "string"
     },
     "images": {
-      "title": "Bilder",
+      "title": "Grafik als Bild",
       "type": "object",
       "properties": {
         "variants": {
