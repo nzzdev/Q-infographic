@@ -24,8 +24,7 @@
             "properties": {
               "minWidth": {
                 "title": "Mindestbreite in px für diese Variante",
-                "type": "number",
-                "default": null
+                "type": "number"
               },
               "images": {
                 "title": "Bilder",
@@ -46,7 +45,20 @@
                 }
               }
             }
-          }
+          },
+          "default": [
+            {
+              "images": [
+                {}
+              ]
+            },
+            {
+              "minWidth": 560,
+              "images": [
+                {}
+              ]
+            }
+          ]
         }
       }
     },
