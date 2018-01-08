@@ -68,7 +68,7 @@ lab.experiment('rendering-info', () => {
         toolRuntimeConfig: {}
       }
     })
-    expect(res.result.stylesheets[0].name).to.be.equal('images.580fff3e.css')
+    expect(res.result.stylesheets[0].name).to.be.equal('images.42104df3.css')
   })
 })
 
@@ -84,6 +84,6 @@ lab.experiment('assets', () => {
       }
     })
     const stylesheetRes = await server.inject(`/stylesheet/${res.result.stylesheets[0].name}`)
-    expect(stylesheetRes.result).to.be.equal('.q-infographic{opacity:1!important}.q-infographic img{width:100%;display:block}')
+    expect(stylesheetRes.result).to.be.equal('.q-infographic{opacity:1!important}.q-infographic__subtitle{margin-bottom:12px}.q-infographic img{width:100%;display:block}')
   })
 })
