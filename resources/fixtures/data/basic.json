@@ -1,0 +1,26 @@
+{
+  "title": "Title",
+  "subtitle": "Subtitle",
+  "images": {
+    "variants": [
+      {
+        "images": [
+          {
+            "url": "http://satyr.io/200x300"
+          },
+          {
+            "url": "http://satyr.io/400x500"
+          }
+        ]
+      },
+      {
+        "images": [
+          {
+            "url": "http://satyr.io/800x500"
+          }
+        ],
+        "minWidth": 400
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Infografik",
+  "properties": {
+    "title": {
+      "title": "Titel",
+      "type": "string"
+    },
+    "subtitle": {
+      "title": "Untertitel",
+      "type": "string"
+    },
+    "images": {
+      "title": "Bilder",
+      "type": "object",
+      "properties": {
+        "variants": {
+          "title": "Varianten",
+          "type": "array",
+          "items": {
+            "title": "Variante",
+            "type": "object",
+            "properties": {
+              "minWidth": {
+                "title": "Mindestbreite in px für diese Variante",
+                "type": "number",
+                "default": null
+              },
+              "images": {
+                "title": "Bilder",
+                "type": "array",
+                "items": {
+                  "title": "Bild",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "Q:type": "files",
+                      "Q:options": {
+                        "maxFiles": 1,
+                        "acceptedFiles": "image/*"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sources": {
+      "title": "Quellen",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "Quelle",
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "link": {
+            "Q:type": "link",
+            "title": "Link",
+            "type": "object",
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "isValid": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "required": ["text"]
+      }
+    },
+    "notes": {
+      "title": "Anmerkungen",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}
