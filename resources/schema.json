@@ -32,13 +32,18 @@
                 "items": {
                   "title": "Bild",
                   "type": "object",
+                  "Q:type": "files",
+                  "Q:options": {
+                    "maxFiles": 1,
+                    "acceptedFiles": "image/*"
+                  },
                   "properties": {
-                    "url": {
-                      "type": "string",
-                      "Q:type": "files",
-                      "Q:options": {
-                        "maxFiles": 1,
-                        "acceptedFiles": "image/*"
+                    "properties": {
+                      "key": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
                       }
                     }
                   }
