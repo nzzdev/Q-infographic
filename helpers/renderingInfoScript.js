@@ -1,8 +1,8 @@
-const querystring = require('querystring')
+const querystring = require("querystring");
 
-function getScript (id, toolBaseUrl, method, queryParams, requestBodyString) {
-  const functionName = `loadImages${id}`
-  const dataObject = `${id}Data`
+function getScript(id, toolBaseUrl, method, queryParams, requestBodyString) {
+  const functionName = `loadImages${id}`;
+  const dataObject = `${id}Data`;
   return `if (!window.q_domready) {
     window.q_domready = new Promise((resolve) => {
       if (document.readyState && (document.readyState === 'interactive' || document.readyState === 'complete')) {
@@ -25,9 +25,11 @@ function getScript (id, toolBaseUrl, method, queryParams, requestBodyString) {
     element: document.querySelector("#${id}")
   };
   function ${functionName}() {
-    fetch("${toolBaseUrl}/rendering-info/web-images?${querystring.stringify(queryParams)}&width=" + ${dataObject}.width, {
+    fetch("${toolBaseUrl}/rendering-info/web-images?${querystring.stringify(
+    queryParams
+  )}&width=" + ${dataObject}.width, {
       method: "${method}",
-      ${requestBodyString ? 'body: ' + JSON.stringify(requestBodyString) : ''}
+      ${requestBodyString ? "body: " + JSON.stringify(requestBodyString) : ""}
     })
     .then(function(response) {
       return response.json();
@@ -51,9 +53,9 @@ function getScript (id, toolBaseUrl, method, queryParams, requestBodyString) {
       }
     });
   });
-`
+`;
 }
 
 module.exports = {
   getScript: getScript
-}
+};
