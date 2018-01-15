@@ -18,6 +18,11 @@ function getValidMinWidths(variants, width) {
 }
 
 function getImagesForWidth(variants, width) {
+  // only use the variants that have one or more images
+  variants = variants.filter(variant => {
+    return variant.images.filter(image => image.url).length > 0;
+  });
+
   // if there is no defined minWidth we return all images
   if (!hasDefinedMinWidth(variants)) {
     return variants.reduce((images, variant) => {
