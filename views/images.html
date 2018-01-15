@@ -1,3 +1,7 @@
 {%- for image in images %}
-  <img src="{{ image.url }}">
+  <picture>
+    <source type="image/webp" srcset="{{imageServiceUrl}}/resize?url={{ image.url }}&width={{ width }}&nocrop=true&type=webp 1x, {{imageServiceUrl}}/resize?url={{ image.url }}&width={{ width*2 }}&nocrop=true&type=webp 2x">
+    <source srcset="{{imageServiceUrl}}/resize?url={{ image.url }}&width={{ width }}&nocrop=true&type=webp 1x, {{imageServiceUrl}}/resize?url={{ image.url }}&width={{ width*2 }}&nocrop=true&type=webp 2x">
+    <img src="{{imageServiceUrl}}/resize?url={{ image.url }}&width={{ width }}&nocrop=true">
+  </picture>
 {%- endfor %}
