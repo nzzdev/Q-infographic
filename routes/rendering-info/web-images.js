@@ -75,7 +75,6 @@ module.exports = {
       )
     };
 
-    console.log(context.images);
     let markup;
     try {
       markup = nunjucksEnv.render(viewsDir + "images.html", context);
