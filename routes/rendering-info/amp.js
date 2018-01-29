@@ -48,7 +48,7 @@ const defaultWidth = 380;
 
 module.exports = {
   method: "POST",
-  path: "/rendering-info/web-images",
+  path: "/rendering-info/amp",
   options: {
     validate: {
       options: {
