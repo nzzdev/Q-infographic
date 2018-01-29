@@ -4,7 +4,7 @@
     <h2 class="figure__caption">{{ item.subtitle }}</h2>
   {%- endif %}
   {%- for image in images %}
-    <amp-img alt="Hummingbird"
+    <amp-img alt="{{ item.title }}"
       src="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=560&nocrop=true"
       width="{{ image.width }}"
       height="{{ image.height }}"
