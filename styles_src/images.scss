@@ -1,6 +1,14 @@
 @import "./_default.scss";
 
+.q-infographic picture {
+  position: relative;
+  display: block;
+}
+
 .q-infographic img {
   width: 100%;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

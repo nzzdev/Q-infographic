@@ -12,7 +12,7 @@
       "type": "string"
     },
     "images": {
-      "title": "Bilder",
+      "title": "Grafik als Bild",
       "type": "object",
       "properties": {
         "variants": {
@@ -24,8 +24,7 @@
             "properties": {
               "minWidth": {
                 "title": "Mindestbreite in px für diese Variante",
-                "type": "number",
-                "default": null
+                "type": "number"
               },
               "images": {
                 "title": "Bilder",
@@ -33,20 +32,35 @@
                 "items": {
                   "title": "Bild",
                   "type": "object",
-                  "properties": {
-                    "url": {
-                      "type": "string",
-                      "Q:type": "files",
-                      "Q:options": {
-                        "maxFiles": 1,
-                        "acceptedFiles": "image/*"
-                      }
+                  "Q:type": "files",
+                  "Q:options": {
+                    "maxFiles": 1,
+                    "acceptedFiles": "image/*",
+                    "fileProperties": {
+                      "url": "url",
+                      "key": "key",
+                      "width": "width",
+                      "height": "height",
+                      "size": "size"
                     }
                   }
                 }
               }
             }
-          }
+          },
+          "default": [
+            {
+              "images": [
+                {}
+              ]
+            },
+            {
+              "minWidth": 560,
+              "images": [
+                {}
+              ]
+            }
+          ]
         }
       }
     },

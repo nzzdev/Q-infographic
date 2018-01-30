@@ -22,4 +22,7 @@
 
     {%- endfor %}
   {%- endif %}
+  {%- if item.acronym %}
+    {%- if item.sources.length > 0 %} &ndash; {% endif %}<span>Grafik: {{ item.acronym }}</span>
+  {%- endif %}
 </div>

@@ -43,16 +43,18 @@ async function validatePayload(payload, options, next) {
   await validateAgainstSchema(payload.item, options);
 }
 
+// we just hardcoded 380 here. generally we will show the images for narrow screens on AMP pages.
+const defaultWidth = 380;
+
 module.exports = {
   method: "POST",
-  path: "/rendering-info/web-images",
+  path: "/rendering-info/amp",
   options: {
     validate: {
       options: {
         allowUnknown: true
       },
       query: {
-        width: Joi.number().required(),
         noCache: Joi.boolean(),
         toolRuntimeConfig: Joi.object().optional()
       },
@@ -64,17 +66,14 @@ module.exports = {
 
     const context = {
       item: item,
-      width: request.query.width,
+      width: defaultWidth,
       imageServiceUrl: process.env.IMAGE_SERVICE_URL,
-      images: imageHelpers.getImagesForWidth(
-        item.images.variants,
-        request.query.width
-      )
+      images: imageHelpers.getImagesForWidth(item.images.variants, defaultWidth)
     };
 
     let markup;
     try {
-      markup = nunjucksEnv.render(viewsDir + "images.html", context);
+      markup = nunjucksEnv.render(viewsDir + "amp.html", context);
     } catch (e) {
       console.error(e);
       throw e;

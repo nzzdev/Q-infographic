@@ -6,21 +6,31 @@
       {
         "images": [
           {
-            "url": "http://satyr.io/200x300"
+            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/300x200.png",
+            "key": "300x200.png",
+            "width": 300,
+            "height": 200
           },
           {
-            "url": "http://satyr.io/400x500"
+            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/500x400.png",
+            "key": "500x400.png",
+            "width": 500,
+            "height": 600
           }
         ]
       },
       {
         "images": [
           {
-            "url": "http://satyr.io/800x500"
+            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/800x500.png",
+            "key": "800x500.png",
+            "width": 800,
+            "height": 500
           }
         ],
         "minWidth": 400
       }
     ]
-  }
+  },
+  "acronym": "zzz"
 }
