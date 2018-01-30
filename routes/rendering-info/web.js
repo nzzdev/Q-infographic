@@ -1,6 +1,6 @@
 const path = require("path");
-
 const Joi = require("joi");
+const UglifyJS = require("uglify-js");
 
 const viewsDir = path.join(__dirname, "/../../views/");
 const stylesDir = path.join(__dirname, "/../../styles/");
@@ -82,13 +82,15 @@ module.exports = {
 
       renderingInfo.scripts = [
         {
-          content: getScript(
-            context.id,
-            request.payload.toolRuntimeConfig.toolBaseUrl,
-            requestMethod,
-            queryParams,
-            requestBodyString
-          )
+          content: UglifyJS.minify(
+            getScript(
+              context.id,
+              request.payload.toolRuntimeConfig.toolBaseUrl,
+              requestMethod,
+              queryParams,
+              requestBodyString
+            )
+          ).code
         }
       ];
     }
