@@ -74,7 +74,7 @@ lab.experiment("rendering-info", () => {
         toolRuntimeConfig: {}
       }
     });
-    expect(res.result.stylesheets[0].name).to.be.equal("images.e6e13a0c.css");
+    expect(res.result.stylesheets[0].name).to.be.equal("images.34e66583.css");
   });
 });
 
@@ -96,7 +96,7 @@ lab.experiment("assets", () => {
       `/stylesheet/${res.result.stylesheets[0].name}`
     );
     expect(stylesheetRes.result).to.be.equal(
-      ".q-infographic{opacity:1!important}.q-infographic__subtitle{margin-bottom:12px}.q-infographic picture{position:relative;display:block}.q-infographic img{width:100%;display:block;position:absolute;top:0;left:0}"
+      ".q-infographic{opacity:1!important}.q-infographic__subtitle{margin-bottom:12px}.q-infographic .picture-container{position:relative;display:block}.q-infographic img{width:100%;display:block;position:absolute;top:0;left:0}"
     );
   });
 });
