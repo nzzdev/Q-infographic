@@ -74,8 +74,22 @@ lab.experiment("rendering-info", () => {
         toolRuntimeConfig: {}
       }
     });
-    expect(res.result.stylesheets[0].name).to.be.equal("images.34e66583.css");
+    const filename = require("../styles/hashMap.json").images;
+    expect(res.result.stylesheets[0].name).to.be.equal(filename);
   });
+
+  it(
+    "returns existing stylesheet with right cache control header",
+    { plan: 2 },
+    async () => {
+      const filename = require("../styles/hashMap.json").images;
+      const response = await server.inject(`/stylesheet/${filename}`);
+      expect(response.statusCode).to.be.equal(200);
+      expect(response.headers["cache-control"]).to.be.equal(
+        "max-age=31536000, immutable"
+      );
+    }
+  );
 });
 
 lab.experiment("assets", () => {
