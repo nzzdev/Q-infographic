@@ -74,8 +74,22 @@ lab.experiment("rendering-info", () => {
         toolRuntimeConfig: {}
       }
     });
-    expect(res.result.stylesheets[0].name).to.be.equal("images.e6e13a0c.css");
+    const filename = require("../styles/hashMap.json").images;
+    expect(res.result.stylesheets[0].name).to.be.equal(filename);
   });
+
+  it(
+    "returns existing stylesheet with right cache control header",
+    { plan: 2 },
+    async () => {
+      const filename = require("../styles/hashMap.json").images;
+      const response = await server.inject(`/stylesheet/${filename}`);
+      expect(response.statusCode).to.be.equal(200);
+      expect(response.headers["cache-control"]).to.be.equal(
+        "max-age=31536000, immutable"
+      );
+    }
+  );
 });
 
 lab.experiment("assets", () => {
@@ -96,7 +110,7 @@ lab.experiment("assets", () => {
       `/stylesheet/${res.result.stylesheets[0].name}`
     );
     expect(stylesheetRes.result).to.be.equal(
-      ".q-infographic{opacity:1!important}.q-infographic__subtitle{margin-bottom:12px}.q-infographic picture{position:relative;display:block}.q-infographic img{width:100%;display:block;position:absolute;top:0;left:0}"
+      ".q-infographic{opacity:1!important}.q-infographic__subtitle{margin-bottom:12px}.q-infographic .picture-container{position:relative;display:block}.q-infographic img{width:100%;display:block;position:absolute;top:0;left:0}"
     );
   });
 });

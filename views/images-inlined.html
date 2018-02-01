@@ -1,0 +1,5 @@
+{%- for image in images %}
+  <div class="picture-container" style="padding-bottom: {{ image.height / image.width * 100 }}%;">
+    <img src="data:image/png;base64,{{ image.base64String }}">
+  </div>
+{%- endfor %}
