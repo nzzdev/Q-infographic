@@ -1,6 +1,6 @@
 {
   "name": "q-infographic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,8 @@
     "postcss": "^6.0.15",
     "postcss-import": "^11.0.0",
     "vision": "^5.3.0",
-    "wreck": "^14.0.2"
+    "wreck": "^14.0.2",
+    "uglify-js": "^3.3.9"
   },
   "devDependencies": {}
 }

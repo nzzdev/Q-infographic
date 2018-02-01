@@ -1,19 +1,48 @@
-<div class="s-q-item q-infographic">
-  {% if displayOptions.hideTitle !== true %}<h2 class="subtitle_main">{{ item.title }}</h2>{% endif %}
+<div>
+  {% if displayOptions.hideTitle !== true %}<h2 class="title subtitle_main">{{ item.title }}</h2>{% endif %}
   {%- if (item.subtitle and item.subtitle !== '') %}
     <h2 class="figure__caption">{{ item.subtitle }}</h2>
   {%- endif %}
   {%- for image in images %}
-    <amp-img alt="Hummingbird"
+    <amp-img alt="{{ item.title }}"
       src="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=560&nocrop=true"
       width="{{ image.width }}"
       height="{{ image.height }}"
       layout="responsive"
-      srcset="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=560&nocrop=true 560w,
-      {{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=360&nocrop=true 360w">
+      srcset="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=360&nocrop=true 360w,
+              {{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=560&nocrop=true 560w,
+              {{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=800&nocrop=true 800w,
+              {{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width=1000&nocrop=true 1000w">
     </amp-img>
   {%- endfor %}
-  {%- include "./footer.html" %}
+  <div class="figure__caption">
+    {%- if item.notes %}
+      <span>{{ item.notes }}{%- if item.sources.length > 0 %}&nbsp;&ndash;&nbsp;{% endif %}</span>
+    {%- endif %}
+    {%- if item.sources.length > 0 %}
+      {%- if item.sources.length > 1 %}
+        Quellen:
+      {%- else %}
+        Quelle:
+      {%- endif %}
+      
+      {%- for source in item.sources %}
+        
+        {%- if source.text !== "" %}
+          {%- if source.link and source.link.isValid %}
+            <a href="{{ source.link.url }}" target="blank" rel="noopener noreferrer">{{ source.text }}</a>
+          {%- else %}
+            {{ source.text }}
+          {%- endif %}
+          {% if not loop.last %}, {% endif %}
+        {%- endif %}
+  
+      {%- endfor %}
+    {%- endif %}
+    {%- if item.acronym %}
+      {%- if item.sources.length > 0 %} &ndash; {% endif %}<span>Grafik: {{ item.acronym }}</span>
+    {%- endif %}
+  </div>  
 </div>
 
 

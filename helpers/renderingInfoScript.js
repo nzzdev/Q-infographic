@@ -4,7 +4,7 @@ function getScript(id, toolBaseUrl, method, queryParams, requestBodyString) {
   const functionName = `loadImages${id}`;
   const dataObject = `${id}Data`;
   return `if (!window.q_domready) {
-    window.q_domready = new Promise((resolve) => {
+    window.q_domready = new Promise(function(resolve) {
       if (document.readyState && (document.readyState === 'interactive' || document.readyState === 'complete')) {
         resolve();
       } else {
@@ -13,7 +13,7 @@ function getScript(id, toolBaseUrl, method, queryParams, requestBodyString) {
           document.removeEventListener('DOMContentLoaded', onReady, true);
         }
         document.addEventListener('DOMContentLoaded', onReady, true);
-        document.onreadystatechange = () => {
+        document.onreadystatechange = function() {
           if (document.readyState === "interactive") {
             resolve();
           }
