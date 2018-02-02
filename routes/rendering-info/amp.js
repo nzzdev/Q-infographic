@@ -70,10 +70,10 @@ module.exports = {
           width: image.width,
           height: image.height,
           urls: {
-            360: imageHelpers.getImageUrlForWidthAndFormat(image, 360, "png"),
-            560: imageHelpers.getImageUrlForWidthAndFormat(image, 560, "png"),
-            800: imageHelpers.getImageUrlForWidthAndFormat(image, 800, "png"),
-            1000: imageHelpers.getImageUrlForWidthAndFormat(image, 1000, "png")
+            w360: imageHelpers.getImageUrlForWidthAndFormat(image, 360, "png"),
+            w560: imageHelpers.getImageUrlForWidthAndFormat(image, 560, "png"),
+            w800: imageHelpers.getImageUrlForWidthAndFormat(image, 800, "png"),
+            w1000: imageHelpers.getImageUrlForWidthAndFormat(image, 1000, "png")
           }
         };
       });

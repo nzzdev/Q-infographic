@@ -5,14 +5,14 @@
   {%- endif %}
   {%- for image in images %}
     <amp-img alt="{{ item.title }}"
-      src="{{ image.urls.560 }}"
+      src="{{ image.urls.w560 }}"
       width="{{ image.width }}"
       height="{{ image.height }}"
       layout="responsive"
-      srcset="{{ image.urls.360 }} 360w,
-              {{ image.urls.560 }} 560w,
-              {{ image.urls.800 }} 800w,
-              {{ image.urls.1000 }} 1000w">
+      srcset="{{ image.urls.w360 }} 360w,
+              {{ image.urls.w560 }} 560w,
+              {{ image.urls.w800 }} 800w,
+              {{ image.urls.w1000 }} 1000w">
     </amp-img>
   {%- endfor %}
   <div class="figure__caption">
