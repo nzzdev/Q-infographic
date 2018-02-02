@@ -63,7 +63,7 @@ module.exports = {
     const imagesBase64StringPromises = images.map(image => {
       const imageUrl = imageHelpers.getImageUrlForWidthAndFormat(
         image,
-        width * 2,
+        width,
         "png"
       );
       return Wreck.get(imageUrl)

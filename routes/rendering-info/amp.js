@@ -70,17 +70,17 @@ module.exports = {
           width: image.width,
           height: image.height,
           urls: {
-            360: getImageUrlForWidthAndFormat(image, 360, "png"),
-            560: getImageUrlForWidthAndFormat(image, 560, "png"),
-            800: getImageUrlForWidthAndFormat(image, 800, "png"),
-            1000: getImageUrlForWidthAndFormat(image, 1000, "png")
+            w360: imageHelpers.getImageUrlForWidthAndFormat(image, 360, "png"),
+            w560: imageHelpers.getImageUrlForWidthAndFormat(image, 560, "png"),
+            w800: imageHelpers.getImageUrlForWidthAndFormat(image, 800, "png"),
+            w1000: imageHelpers.getImageUrlForWidthAndFormat(image, 1000, "png")
           }
         };
       });
 
     const context = {
       item: item,
-      displayOptions: request.query.toolRuntimeConfig.displayOptions || {},
+      displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
       images: images
     };
 
