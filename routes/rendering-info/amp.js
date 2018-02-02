@@ -80,7 +80,7 @@ module.exports = {
 
     const context = {
       item: item,
-      displayOptions: request.query.toolRuntimeConfig.displayOptions || {},
+      displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
       images: images
     };
 
