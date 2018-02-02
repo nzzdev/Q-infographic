@@ -58,7 +58,7 @@ function getImagesForWidth(variants, width) {
 function getImageUrlForWidthAndFormat(image, width, format) {
   return process.env.IMAGE_SERVICE_URL.replace("{key}", image.key)
     .replace("{width}", width)
-    .replace("{format}", "png");
+    .replace("{format}", format);
 }
 
 function getImageWithUrlsForImageAndWidth(image, width) {
