@@ -1,7 +1,7 @@
 {%- for image in images %}
   <picture class="picture-container" style="padding-bottom: {{ image.height / image.width * 100 }}%;">
-    <source type="image/webp" srcset="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width={{ width }}&nocrop=true&type=webp 1x, {{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width={{ width*2 }}&nocrop=true&type=webp 2x">
-    <source srcset="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width={{ width }}&nocrop=true 1x, {{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width={{ width*2 }}&nocrop=true 2x">
-    <img src="{{imageServiceUrl}}/resize?url={{ image.url | urlencode }}&width={{ width }}&nocrop=true">
+    <source type="image/webp" srcset="{{ image.urls.webp1x }} 1x, {{ image.urls.webp2x }} 2x">
+    <source srcset="{{ image.urls.png1x }} 1x, {{ image.urls.png2x }} 2x">
+    <img src="{{ image.urls.png1x }}">
   </picture>
 {%- endfor %}

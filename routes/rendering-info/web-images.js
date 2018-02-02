@@ -62,14 +62,18 @@ module.exports = {
   handler: async function(request, h) {
     const item = request.payload.item;
 
+    const images = imageHelpers
+      .getImagesForWidth(item.images.variants, request.query.width)
+      .map(image => {
+        return imageHelpers.getImageWithUrlsForImageAndWidth(
+          image,
+          request.query.width
+        );
+      });
+
     const context = {
       item: item,
-      width: request.query.width,
-      imageServiceUrl: process.env.IMAGE_SERVICE_URL,
-      images: imageHelpers.getImagesForWidth(
-        item.images.variants,
-        request.query.width
-      )
+      images: images
     };
 
     let markup;

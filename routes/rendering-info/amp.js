@@ -55,8 +55,7 @@ module.exports = {
         allowUnknown: true
       },
       query: {
-        noCache: Joi.boolean(),
-        toolRuntimeConfig: Joi.object().optional()
+        noCache: Joi.boolean()
       },
       payload: validatePayload
     }
@@ -64,11 +63,25 @@ module.exports = {
   handler: async function(request, h) {
     const item = request.payload.item;
 
+    const images = imageHelpers
+      .getImagesForWidth(item.images.variants, defaultWidth)
+      .map(image => {
+        return {
+          width: image.width,
+          height: image.height,
+          urls: {
+            w360: imageHelpers.getImageUrlForWidthAndFormat(image, 360, "png"),
+            w560: imageHelpers.getImageUrlForWidthAndFormat(image, 560, "png"),
+            w800: imageHelpers.getImageUrlForWidthAndFormat(image, 800, "png"),
+            w1000: imageHelpers.getImageUrlForWidthAndFormat(image, 1000, "png")
+          }
+        };
+      });
+
     const context = {
       item: item,
-      width: defaultWidth,
-      imageServiceUrl: process.env.IMAGE_SERVICE_URL,
-      images: imageHelpers.getImagesForWidth(item.images.variants, defaultWidth)
+      displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
+      images: images
     };
 
     let markup;
