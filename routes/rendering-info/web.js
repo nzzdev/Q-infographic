@@ -1,4 +1,5 @@
 const path = require("path");
+const fs = require("fs");
 const Joi = require("joi");
 const UglifyJS = require("uglify-js");
 
@@ -16,6 +17,38 @@ const getExactPixelWidth = require("../../helpers/toolRuntimeConfig.js")
 
 const getScript = require("../../helpers/renderingInfoScript.js").getScript;
 
+const Ajv = require("ajv");
+const ajv = new Ajv();
+
+// add draft-04 support explicit
+ajv.addMetaSchema(require("ajv/lib/refs/json-schema-draft-04.json"));
+
+// POSTed item will be validated against given schema
+// hence we fetch the JSON schema...
+const schemaString = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../../resources/", "schema.json"), {
+    encoding: "utf-8"
+  })
+);
+const validate = ajv.compile(schemaString);
+function validateAgainstSchema(item, options) {
+  if (validate(item)) {
+    return item;
+  } else {
+    throw Boom.badRequest(JSON.stringify(validate.errors));
+  }
+}
+
+async function validatePayload(payload, options, next) {
+  if (typeof payload !== "object") {
+    return next(Boom.badRequest(), payload);
+  }
+  if (typeof payload.item !== "object") {
+    return next(Boom.badRequest(), payload);
+  }
+  await validateAgainstSchema(payload.item, options);
+}
+
 module.exports = {
   method: "POST",
   path: "/rendering-info/web",
@@ -24,10 +57,7 @@ module.exports = {
       options: {
         allowUnknown: true
       },
-      payload: {
-        item: Joi.object(),
-        toolRuntimeConfig: Joi.object()
-      }
+      payload: validatePayload
     }
   },
   handler: async function(request, h) {

@@ -61,9 +61,11 @@ module.exports = {
 
     // fetch the image via imageService in the correct width with assumed dpr of 2 for the screenshot
     const imagesBase64StringPromises = images.map(image => {
-      const imageUrl = `${imageServiceUrl}/resize?url=${encodeURIComponent(
-        image.url
-      )}&width=${width * 2}&nocrop=true`;
+      const imageUrl = imageHelpers.getImageUrlForWidthAndFormat(
+        image,
+        width * 2,
+        "png"
+      );
       return Wreck.get(imageUrl)
         .then(response => {
           return response.payload.toString("base64");

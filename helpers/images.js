@@ -55,6 +55,27 @@ function getImagesForWidth(variants, width) {
     }, []);
 }
 
+function getImageUrlForWidthAndFormat(image, width, format) {
+  return process.env.IMAGE_SERVICE_URL.replace("{key}", image.key)
+    .replace("{width}", width)
+    .replace("{format}", "png");
+}
+
+function getImageWithUrlsForImageAndWidth(image, width) {
+  return {
+    width: image.width,
+    height: image.height,
+    urls: {
+      png1x: getImageUrlForWidthAndFormat(image, width, "png"),
+      png2x: getImageUrlForWidthAndFormat(image, width * 2, "png"),
+      webp1x: getImageUrlForWidthAndFormat(image, width, "webpll"),
+      webp2x: getImageUrlForWidthAndFormat(image, width * 2, "webpll")
+    }
+  };
+}
+
 module.exports = {
-  getImagesForWidth: getImagesForWidth
+  getImagesForWidth: getImagesForWidth,
+  getImageWithUrlsForImageAndWidth: getImageWithUrlsForImageAndWidth,
+  getImageUrlForWidthAndFormat: getImageUrlForWidthAndFormat
 };
