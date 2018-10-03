@@ -5,11 +5,17 @@
   "properties": {
     "title": {
       "title": "Titel",
-      "type": "string"
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt&#46;"
+      }
     },
     "subtitle": {
       "title": "Untertitel",
-      "type": "string"
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Untertitel benennt präzise, was in der Grafik zu sehen ist, inklusive Einheiten&#46;"
+      }
     },
     "images": {
       "title": "Grafik als Bild",
@@ -65,14 +71,14 @@
       }
     },
     "sources": {
-      "title": "Quellen",
+      "title": "Quelle(n)",
       "type": "array",
       "items": {
         "type": "object",
         "title": "Quelle",
         "properties": {
           "text": {
-            "title": "Text",
+            "title": "Quelle",
             "type": "string"
           },
           "link": {
@@ -81,8 +87,11 @@
             "type": "object",
             "properties": {
               "url": {
-                "title": "Url",
-                "type": "string"
+                "title": "Link",
+                "type": "string",
+                "Q:options": {
+                  "placeholder": "Direktlink zur Quelle, http://&#46;&#46;&#46;"
+                }
               },
               "isValid": {
                 "type": "boolean"
@@ -96,6 +105,17 @@
     "notes": {
       "title": "Anmerkungen",
       "type": "string"
+    },
+    "options": {
+      "title": "Optionen",
+      "type": "object",
+      "properties": {
+        "serveLosslessWebP": {
+          "title": "Verlustfreies WebP mitschicken",
+          "type": "boolean",
+          "default": false
+        }
+      }
     }
   },
   "required": [

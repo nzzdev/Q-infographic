@@ -67,7 +67,8 @@ module.exports = {
       .map(image => {
         return imageHelpers.getImageWithUrlsForImageAndWidth(
           image,
-          request.query.width
+          request.query.width,
+          item.options ? item.options.serveLosslessWebP : false
         );
       });
 
