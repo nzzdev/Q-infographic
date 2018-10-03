@@ -61,15 +61,16 @@ function getImageUrlForWidthAndFormat(image, width, format) {
     .replace("{format}", format);
 }
 
-function getImageWithUrlsForImageAndWidth(image, width) {
+function getImageWithUrlsForImageAndWidth(image, width, serveLosslessWebP) {
+  const format = serveLosslessWebP ? "webpll" : "webply";
   return {
     width: image.width,
     height: image.height,
     urls: {
       png1x: getImageUrlForWidthAndFormat(image, width, "png"),
       png2x: getImageUrlForWidthAndFormat(image, width * 2, "png"),
-      webp1x: getImageUrlForWidthAndFormat(image, width, "webpll"),
-      webp2x: getImageUrlForWidthAndFormat(image, width * 2, "webpll")
+      webp1x: getImageUrlForWidthAndFormat(image, width, format),
+      webp2x: getImageUrlForWidthAndFormat(image, width * 2, format)
     }
   };
 }

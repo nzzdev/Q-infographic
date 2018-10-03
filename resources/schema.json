@@ -96,6 +96,17 @@
     "notes": {
       "title": "Anmerkungen",
       "type": "string"
+    },
+    "options": {
+      "title": "Optionen",
+      "type": "object",
+      "properties": {
+        "serveLosslessWebP": {
+          "title": "Verlustfreies WebP mitschicken",
+          "type": "boolean",
+          "default": false
+        }
+      }
     }
   },
   "required": [
