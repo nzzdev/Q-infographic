@@ -14,7 +14,7 @@
       "title": "Untertitel",
       "type": "string",
       "Q:options": {
-        "placeholder": "Der Untertitel benennt präzise, was in der Grafik zu sehen ist, inklusive Einheiten."
+        "placeholder": "Der Untertitel benennt präzise, was in der Grafik zu sehen ist, inklusive Einheiten&#46;"
       }
     },
     "images": {
@@ -90,7 +90,7 @@
                 "title": "Link",
                 "type": "string",
                 "Q:options": {
-                  "placeholder": "Direktlink zur Quelle, http://..."
+                  "placeholder": "Direktlink zur Quelle, http://&#46;&#46;&#46;"
                 }
               },
               "isValid": {
