@@ -7,7 +7,7 @@
       "title": "Titel",
       "type": "string",
       "Q:options": {
-        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt."
+        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt&#46;"
       }
     },
     "subtitle": {
