@@ -1,0 +1,19 @@
+{
+  "Titel": "Titre",
+  "Untertitel": "Sous-titre",
+  "Der Titel bringt die Kernaussage der Grafik auf den Punkt&#46;": "Le titre apporte le message de base du table au point.",
+  "Der Untertitel benennt präzise, was in der Grafik zu sehen ist, inklusive Einheiten&#46;": "Les sous-titres désignent précisément ce qui peut être vu dans le graphique, y compris les unités",
+  "Grafik als Bild": "Graphic as image",
+  "Varianten": "Variants",
+  "Variante": "Variant",
+  "Mindestbreite in px für diese Variante": "Largeur minimale en px pour cette variante",
+  "Bilder": "Images",
+  "Bild": "Image",
+  "Quelle(n)": "Sources",
+  "Quelle": "Source",
+  "Link": "Link",
+  "Direktlink zur Quelle, http://&#46;&#46;&#46;": "Lien direct vers la source, http://...",
+  "Anmerkungen": "Remarques",
+  "Optionen": "Options",
+  "Verlustfreies WebP mitschicken": "Envoyer un WebP sans perte"
+}
