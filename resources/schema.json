@@ -47,7 +47,8 @@
                       "key": "key",
                       "width": "width",
                       "height": "height",
-                      "size": "size"
+                      "size": "size",
+                      "type": "type"
                     }
                   }
                 }
