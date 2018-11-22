@@ -57,15 +57,11 @@
           },
           "default": [
             {
-              "images": [
-                {}
-              ]
+              "images": [{}]
             },
             {
               "minWidth": 500,
-              "images": [
-                {}
-              ]
+              "images": [{}]
             }
           ]
         }
@@ -119,7 +115,5 @@
       }
     }
   },
-  "required": [
-    "title"
-  ]
+  "required": ["title"]
 }

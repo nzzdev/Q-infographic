@@ -1,0 +1,19 @@
+{
+  "Titel": "Title",
+  "Untertitel": "Subtitle",
+  "Der Titel bringt die Kernaussage der Grafik auf den Punkt&#46;": "The title brings the core message of the table to the point.",
+  "Der Untertitel benennt präzise, was in der Grafik zu sehen ist, inklusive Einheiten&#46;": "The subtitle names precisely what can be seen in the graphic, including units",
+  "Grafik als Bild": "Graphic as image",
+  "Varianten": "Variants",
+  "Variante": "Variant",
+  "Mindestbreite in px für diese Variante": "Minimum width in px for this variant",
+  "Bilder": "Images",
+  "Bild": "Image",
+  "Quelle(n)": "Sources",
+  "Quelle": "Source",
+  "Link": "Link",
+  "Direktlink zur Quelle, http://&#46;&#46;&#46;": "Direct link to the source, http://...",
+  "Anmerkungen": "Notes",
+  "Optionen": "Options",
+  "Verlustfreies WebP mitschicken": "Send Lossless WebP"
+}
