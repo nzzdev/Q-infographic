@@ -1,4 +1,3 @@
-const fs = require("fs");
 const Lab = require("lab");
 const Code = require("code");
 const Hapi = require("hapi");
@@ -44,40 +43,33 @@ lab.experiment("basics", () => {
   });
 });
 
-lab.experiment("rendering-info", () => {
-  it("renderes markup", async () => {
-    const fixture = fs.readFileSync(
-      `${__dirname}/../resources/fixtures/data/basic.json`,
-      { encoding: "utf-8" }
-    );
-    const res = await server.inject({
-      url: "/rendering-info/web",
-      method: "POST",
-      payload: {
-        item: JSON.parse(fixture),
-        toolRuntimeConfig: {}
-      }
-    });
-    expect(res.result.markup).to.be.a.string();
+lab.experiment("schema endpoint", () => {
+  it("returns 200 for /schema.json", async () => {
+    const response = await server.inject("/schema.json");
+    expect(response.statusCode).to.be.equal(200);
   });
+});
 
-  it("returnes compiled stylesheet name", async () => {
-    const fixture = fs.readFileSync(
-      `${__dirname}/../resources/fixtures/data/basic.json`,
-      { encoding: "utf-8" }
-    );
-    const res = await server.inject({
-      url: "/rendering-info/web",
-      method: "POST",
-      payload: {
-        item: JSON.parse(fixture),
-        toolRuntimeConfig: {}
-      }
-    });
-    const filename = require("../styles/hashMap.json").images;
-    expect(res.result.stylesheets[0].name).to.be.equal(filename);
+lab.experiment("locales endpoint", () => {
+  it("returns 200 for en translations", async () => {
+    const request = {
+      method: "GET",
+      url: "/locales/en/translation.json"
+    };
+    const response = await server.inject(request);
+    expect(response.statusCode).to.be.equal(200);
   });
+  it("returns 200 for fr translations", async () => {
+    const request = {
+      method: "GET",
+      url: "/locales/fr/translation.json"
+    };
+    const response = await server.inject(request);
+    expect(response.statusCode).to.be.equal(200);
+  });
+});
 
+lab.experiment("stylesheets endpoint", () => {
   it(
     "returns existing stylesheet with right cache control header",
     { plan: 2 },
@@ -90,27 +82,34 @@ lab.experiment("rendering-info", () => {
       );
     }
   );
+
+  it("returns Not Found when requesting an inexisting stylesheet", async () => {
+    const response = await server.inject("/stylesheet/inexisting.123.css");
+    expect(response.statusCode).to.be.equal(404);
+  });
 });
 
-lab.experiment("assets", () => {
-  it("returnes stylesheet", async () => {
-    const fixture = fs.readFileSync(
-      `${__dirname}/../resources/fixtures/data/basic.json`,
-      { encoding: "utf-8" }
-    );
-    const res = await server.inject({
-      url: "/rendering-info/web",
+lab.experiment("rendering-info endpoint", () => {
+  it("returns 200 for /rendering-info/web", async () => {
+    const request = {
       method: "POST",
+      url: "/rendering-info/web",
       payload: {
-        item: JSON.parse(fixture),
-        toolRuntimeConfig: {}
+        item: require("../resources/fixtures/data/basic.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
       }
-    });
-    const stylesheetRes = await server.inject(
-      `/stylesheet/${res.result.stylesheets[0].name}`
-    );
-    expect(stylesheetRes.result).to.be.equal(
-      ".q-infographic{opacity:1!important}.q-infographic__subtitle{margin-bottom:12px}.q-infographic .picture-container{position:relative;display:block}.q-infographic img{width:100%;display:block;position:absolute;top:0;left:0}"
-    );
+    };
+    const response = await server.inject(request);
+    expect(response.statusCode).to.be.equal(200);
+  });
+});
+
+lab.experiment("fixture data endpoint", () => {
+  it("returns 1 fixture data items for /fixtures/data", async () => {
+    const response = await server.inject("/fixtures/data");
+    expect(response.statusCode).to.be.equal(200);
+    expect(response.result.length).to.be.equal(1);
   });
 });
