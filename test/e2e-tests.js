@@ -70,18 +70,27 @@ lab.experiment("locales endpoint", () => {
 });
 
 lab.experiment("stylesheets endpoint", () => {
-  it(
-    "returns existing stylesheet with right cache control header",
-    { plan: 2 },
-    async () => {
-      const filename = require("../styles/hashMap.json").images;
-      const response = await server.inject(`/stylesheet/${filename}`);
-      expect(response.statusCode).to.be.equal(200);
-      expect(response.headers["cache-control"]).to.be.equal(
-        "max-age=31536000, immutable"
-      );
-    }
-  );
+  it("returns existing stylesheet with right cache control header", async () => {
+    const filename = require("../styles/hashMap.json").images;
+    const response = await server.inject(`/stylesheet/${filename}`);
+    expect(response.statusCode).to.be.equal(200);
+    expect(response.headers["cache-control"]).to.be.equal(
+      "max-age=31536000, immutable"
+    );
+  });
+
+  it("returnes compiled stylesheet name", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/web",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/basic.json"),
+        toolRuntimeConfig: {}
+      }
+    });
+    const filename = require("../styles/hashMap.json").images;
+    expect(response.result.stylesheets[0].name).to.be.equal(filename);
+  });
 
   it("returns Not Found when requesting an inexisting stylesheet", async () => {
     const response = await server.inject("/stylesheet/inexisting.123.css");
