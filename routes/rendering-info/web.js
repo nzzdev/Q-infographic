@@ -20,9 +20,6 @@ const getScript = require("../../helpers/renderingInfoScript.js").getScript;
 const Ajv = require("ajv");
 const ajv = new Ajv();
 
-// add draft-04 support explicit
-ajv.addMetaSchema(require("ajv/lib/refs/json-schema-draft-04.json"));
-
 // POSTed item will be validated against given schema
 // hence we fetch the JSON schema...
 const schemaString = JSON.parse(
