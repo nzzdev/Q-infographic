@@ -13,7 +13,7 @@ install:
 - npm install -g standard
 before_script:
 - DOCKER_IMAGE_NAME="q-infographic"
-- DOCKER_TAG=$TRAVIS_BRANCH
+- DOCKER_TAG=${TRAVIS_BRANCH/\//_}
 script:
 - npm run build && npm run test && docker build -t $DOCKER_IMAGE_NAME:$DOCKER_TAG
   .
