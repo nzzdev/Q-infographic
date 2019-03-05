@@ -56,9 +56,13 @@ function getImagesForWidth(variants, width) {
 }
 
 function getImageUrlForWidthAndFormat(image, width, format) {
-  return process.env.IMAGE_SERVICE_URL.replace("{key}", image.key)
-    .replace("{width}", width)
-    .replace("{format}", format);
+  if (process.env.IMAGE_SERVICE_URL) {
+    return process.env.IMAGE_SERVICE_URL.replace("{key}", image.key)
+      .replace("{width}", width)
+      .replace("{format}", format);
+  } else {
+    return image.url;
+  }
 }
 
 function getImageWithUrlsForImageAndWidth(image, width, serveLosslessWebP) {
