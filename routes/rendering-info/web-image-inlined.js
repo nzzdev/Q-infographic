@@ -56,7 +56,6 @@ module.exports = {
       )}`.replace(/-/g, "")
     };
 
-    const imageServiceUrl = process.env.IMAGE_SERVICE_URL;
     const images = imageHelpers.getImagesForWidth(item.images.variants, width);
 
     // fetch the image via imageService in the correct width with assumed dpr of 2 for the screenshot
