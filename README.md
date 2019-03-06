@@ -2,6 +2,9 @@
 
 **maintainer**: [benib](https://github.com/benib)
 
+Q infographic is one tool of the Q toolbox to display different graphics depending on their container size.
+Test it in the [Q Playground](https://q-playground.st.nzz.ch).
+
 ## Table of contents
 
 - [Installation](#installation)
