@@ -8,16 +8,18 @@
 - [Configuration](#configuration)
 - [Development](#development)
 - [Testing](#testing)
-- [Tool implementation details](#tool-implementation-details)
-- [Features](#features)
-- [Options](#options)
+- [Deployment](#deployment)
+- [Functionality](#functionality)
+- [License](#license)
 
 ## Installation
 
 ```bash
-$ nvm use
-$ npm install
-$ npm run build
+git clone git@github.com:nzzdev/Q-infographic.git
+cd ./Q-infographic
+nvm use
+npm install
+npm run build
 ```
 
 ## Configuration
@@ -32,8 +34,18 @@ If `IMAGE_SERVICE_URL` is not configured, the `image.url` property is used direc
 
 ## Development
 
-Make sure to build at least once: `npm run build`.
-Run the tool with `node index.js`.
+Start the Q dev server:
+
+```
+npx @nzz/q-cli server
+```
+
+Run the Q tool:
+
+```
+node index.js
+```
+
 [to the top](#table-of-contents)
 
 ## Testing
@@ -55,15 +67,25 @@ When changing or implementing...
 
 [to the top](#table-of-contents)
 
-## Tool implentation details
+## Deployment
+
+We provide automatically built docker images at https://hub.docker.com/r/nzzonline/q-swiss-vote/.
+There are three options for deployment:
+
+- use the provided images
+- build your own docker images
+- deploy the service using another technology
+
+### Use the provided docker images
+
+1. Deploy `nzzonline/q-swiss-vote` to a docker environment
+2. Set the ENV variables as described in the [configuration section](#configuration)
+
+## Functionality
 
 The tool structure follows the general structure of each Q tool. Further information can be found in [Q server documentation - Developing tools](https://nzzdev.github.io/Q-server/developing-tools.html).
 
-[to the top](#table-of-contents)
-
-## Features
-
-There are 4 endpoints for renderingInfo.
+There are 4 endpoints for renderingInfo:
 
 ### `/rendering-info/web`
 
@@ -88,9 +110,9 @@ This endpoint returns amp-html for the complete graphic including title/subtitle
 
 [to the top](#table-of-contents)
 
-## Options
+### Options
 
-### serveLosslessWebP
+#### serveLosslessWebP
 
 If checked the format for WebP images will be `webpll`. If unchecked `webply`. These formats are recognised by fastly image service (https://docs.fastly.com/api/imageopto/format)
 

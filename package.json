@@ -3,6 +3,7 @@
   "version": "1.4.2",
   "description": "",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
     "test": "lab -a code -c -P tests --verbose --leaks"
