@@ -69,7 +69,7 @@ When changing or implementing...
 
 ## Deployment
 
-We provide automatically built docker images at https://hub.docker.com/r/nzzonline/q-swiss-vote/.
+We provide automatically built docker images at https://hub.docker.com/r/nzzonline/q-infographic/.
 There are three options for deployment:
 
 - use the provided images
@@ -78,7 +78,7 @@ There are three options for deployment:
 
 ### Use the provided docker images
 
-1. Deploy `nzzonline/q-swiss-vote` to a docker environment
+1. Deploy `nzzonline/q-infographic` to a docker environment
 2. Set the ENV variables as described in the [configuration section](#configuration)
 
 ## Functionality
