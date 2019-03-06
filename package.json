@@ -3,6 +3,7 @@
   "version": "1.4.2",
   "description": "",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
     "test": "lab -a code -c -P tests --verbose --leaks"
@@ -25,7 +26,10 @@
     "wreck": "^14.1.3"
   },
   "devDependencies": {
+    "amphtml-validator": "^1.0.23",
+    "atob": "^2.1.2",
     "code": "^5.2.4",
+    "image-type": "^3.0.0",
     "jsdom": "^13.2.0",
     "lab": "^18.0.2"
   }
