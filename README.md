@@ -58,7 +58,7 @@ The testing framework used in this repository is [Code](https://github.com/hapij
 Run the tests:
 
 ```
-$ npm run test
+npm run test
 ```
 
 ### Implementing a new test
