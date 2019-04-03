@@ -101,7 +101,7 @@ There are 2 places where this route is called from.
 1. From inside the handler for `rendering-info/web` using server.inject
 2. From the client side script returned from `/rendering-info/web` if no exact width is given
 
-This route handler renders the `view/images.html` template and returns a `<picture>` element containing different `<source>` elements for the image in different sizes for different screen DPI and png/webp.
+This route handler renders the `view/images.html` template and returns a `<picture>` element containing different `<source>` elements for the image in different sizes for different screen DPI and png/webp. Each `<img>` has an `alt`-tag which is defined by the `item.title` and `item.subtitle`. The matrix of how it will be displayed can be found (here)[https://github.com/nzzdev/Q-infographic/blob/c52f4cbf57d3955ad09d8e9c8d0dbd77b40cfdfe/views/images.html#L5].
 
 ### `/rendering-info/web-images-inlined`
 

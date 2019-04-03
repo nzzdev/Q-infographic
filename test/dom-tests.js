@@ -153,7 +153,7 @@ lab.experiment("Q infographic dom tests", () => {
 
     return getElements(response.result.markup, "img").then(elements => {
       elements.forEach(element => {
-        expect(element.alt).to.be.equals("");
+        expect(element.alt).to.be.equals(""); // alt tag is by default ""
       });
     });
   });
