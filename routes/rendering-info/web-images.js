@@ -71,8 +71,13 @@ module.exports = {
 
     const context = {
       item: item,
-      images: images
+      images: images,
+      displayOptions: {}
     };
+
+    if (request.payload.toolRuntimeConfig) {
+      context.displayOptions = request.payload.toolRuntimeConfig.displayOptions;
+    }
 
     let markup;
     try {

@@ -94,6 +94,69 @@ lab.experiment("Q infographic dom tests", () => {
       expect(value).to.be.equal(1);
     });
   });
+
+  it("should display the alt tag of image", async () => {
+    const item = require("../resources/fixtures/data/show-alt-tag.json");
+    const response = await server.inject({
+      url: "/rendering-info/web",
+      method: "POST",
+      payload: {
+        item: item,
+        toolRuntimeConfig: {
+          size: { width: [{ value: 400, comparison: "=" }] }
+        }
+      }
+    });
+    return getElements(response.result.markup, "img").then(elements => {
+      const altTag = `${item.title} - ${item.subtitle}`;
+      elements.forEach(element => {
+        expect(element.alt).to.be.equals(altTag);
+      });
+    });
+  });
+
+  it("should only display the title in alt tag of image", async () => {
+    const item = require("../resources/fixtures/data/hide-alt-tag.json");
+    const response = await server.inject({
+      url: "/rendering-info/web",
+      method: "POST",
+      payload: {
+        item: item,
+        toolRuntimeConfig: {
+          size: { width: [{ value: 400, comparison: "=" }] }
+        }
+      }
+    });
+
+    return getElements(response.result.markup, "img").then(elements => {
+      const altTag = `${item.title}`;
+      elements.forEach(element => {
+        expect(element.alt).to.be.equals(altTag);
+      });
+    });
+  });
+
+  it("shouldn't display the alt tag of image", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/web",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/hide-alt-tag.json"),
+        toolRuntimeConfig: {
+          displayOptions: {
+            hideTitle: true
+          },
+          size: { width: [{ value: 400, comparison: "=" }] }
+        }
+      }
+    });
+
+    return getElements(response.result.markup, "img").then(elements => {
+      elements.forEach(element => {
+        expect(element.alt).to.be.equals(""); // alt tag is by default ""
+      });
+    });
+  });
 });
 
 lab.experiment("correct image selection based on width", () => {
