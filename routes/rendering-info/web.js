@@ -62,11 +62,15 @@ module.exports = {
 
     const context = {
       item: item,
-      displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
+      displayOptions: {},
       id: `q_infographic_${request.query._id}_${Math.floor(
         Math.random() * 100000
       )}`.replace(/-/g, "")
     };
+
+    if (request.payload.toolRuntimeConfig) {
+      context.displayOptions = request.payload.toolRuntimeConfig.displayOptions;
+    }
 
     const renderingInfo = {};
 
