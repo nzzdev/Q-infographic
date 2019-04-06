@@ -29,7 +29,7 @@
     "amphtml-validator": "^1.0.23",
     "atob": "^2.1.2",
     "code": "^5.2.4",
-    "image-type": "^3.0.0",
+    "image-type": "^4.1.0",
     "jsdom": "^14.0.0",
     "lab": "^18.0.2"
   }
