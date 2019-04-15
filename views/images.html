@@ -1,7 +1,8 @@
 {%- for image in images %}
-  <picture class="picture-container" style="padding-bottom: {{ image.height / image.width * 100 }}%;">
-    <source type="image/webp" srcset="{{ image.urls.webp1x }} 1x, {{ image.urls.webp2x }} 2x">
-    <source srcset="{{ image.urls.png1x }} 1x, {{ image.urls.png2x }} 2x">
-    <img src="{{ image.urls.png1x }}">
-  </picture>
+<picture class="picture-container" style="padding-bottom: {{ image.height / image.width * 100 }}%;">
+	<source type="image/webp" srcset="{{ image.urls.webp1x }} 1x, {{ image.urls.webp2x }} 2x">
+	<source srcset="{{ image.urls.png1x }} 1x, {{ image.urls.png2x }} 2x">
+	<img src="{{ image.urls.png1x }}" {% if (not displayOptions.hideTitle) or (not displayOptions.hideTitle and not
+	 item.subtitle) %} alt="{{item.title}}{%- if item.subtitle %} - {% endif %}{{item.subtitle}}" {% endif %} />
+</picture>
 {%- endfor %}

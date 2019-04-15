@@ -84,7 +84,7 @@ lab.experiment("stylesheets endpoint", () => {
       url: "/rendering-info/web",
       method: "POST",
       payload: {
-        item: require("../resources/fixtures/data/basic.json"),
+        item: require("../resources/fixtures/data/2-variants.json"),
         toolRuntimeConfig: {}
       }
     });
@@ -104,7 +104,7 @@ lab.experiment("rendering-info endpoint", () => {
       method: "POST",
       url: "/rendering-info/web",
       payload: {
-        item: require("../resources/fixtures/data/basic.json"),
+        item: require("../resources/fixtures/data/2-variants.json"),
         toolRuntimeConfig: {
           displayOptions: {}
         }
@@ -116,9 +116,9 @@ lab.experiment("rendering-info endpoint", () => {
 });
 
 lab.experiment("fixture data endpoint", () => {
-  it("returns 1 fixture data items for /fixtures/data", async () => {
+  it("returns 5 fixture data items for /fixtures/data", async () => {
     const response = await server.inject("/fixtures/data");
     expect(response.statusCode).to.be.equal(200);
-    expect(response.result.length).to.be.equal(1);
+    expect(response.result.length).to.be.equal(5);
   });
 });
