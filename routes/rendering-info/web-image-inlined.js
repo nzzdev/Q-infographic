@@ -1,6 +1,6 @@
 const path = require("path");
-const Wreck = require("wreck");
-const Joi = require("joi");
+const Wreck = require("@hapi/wreck");
+const Joi = require("@hapi/joi");
 
 const viewsDir = path.join(__dirname, "/../../views/");
 const stylesDir = path.join(__dirname, "/../../styles/");

@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const Joi = require("joi");
+const Joi = require("@hapi/joi");
 const UglifyJS = require("uglify-js");
 
 const viewsDir = path.join(__dirname, "/../../views/");
