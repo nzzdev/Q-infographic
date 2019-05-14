@@ -1,6 +1,6 @@
-const Lab = require("lab");
-const Code = require("code");
-const Hapi = require("hapi");
+const Lab = require("@hapi/lab");
+const Code = require("@hapi/code");
+const Hapi = require("@hapi/hapi");
 const lab = (exports.lab = Lab.script());
 
 const expect = Code.expect;
@@ -20,7 +20,7 @@ before(async () => {
         cors: true
       }
     });
-    await server.register(require("inert"));
+    await server.register(require("@hapi/inert"));
     server.route(routes);
   } catch (err) {
     expect(err).to.not.exist();
