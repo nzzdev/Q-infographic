@@ -1,6 +1,6 @@
-# Q-infographic [![Build Status](https://travis-ci.com/nzzdev/Q-infographic.svg?token=tYv1sxPNiVKviBpSHziC&branch=dev)](https://travis-ci.com/nzzdev/Q-infographic) [![Greenkeeper badge](https://badges.greenkeeper.io/nzzdev/Q-infographic.svg?token=d5a9a801229890e88e1a6197e5defa70ddfcf67eed0c2b4c81f24f16ea1489ce&ts=1551342813362)](https://greenkeeper.io/)
+# Q-infographic [![Build Status](https://travis-ci.com/nzzdev/Q-infographic.svg?token=tYv1sxPNiVKviBpSHziC&branch=dev)](https://travis-ci.com/nzzdev/Q-infographic)
 
-**maintainer**: [benib](https://github.com/benib)
+**maintainer**: [philipkueng](https://github.com/philipkueng)
 
 Q infographic is one tool of the Q toolbox to display different graphics depending on their container size.
 Test it in the [Q Playground](https://q-playground.st.nzz.ch).
