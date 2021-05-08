@@ -1,6 +1,6 @@
-const Lab = require("lab");
-const Code = require("code");
-const Hapi = require("hapi");
+const Lab = require("@hapi/lab");
+const Code = require("@hapi/code");
+const Hapi = require("@hapi/hapi");
 const lab = (exports.lab = Lab.script());
 
 const expect = Code.expect;
@@ -17,10 +17,11 @@ before(async () => {
     server = Hapi.server({
       port: process.env.PORT || 3000,
       routes: {
-        cors: true
-      }
+        cors: true,
+      },
     });
-    await server.register(require("inert"));
+    await server.register(require("@hapi/inert"));
+    server.validator(require("joi"));
     server.route(routes);
   } catch (err) {
     expect(err).to.not.exist();
@@ -54,7 +55,7 @@ lab.experiment("locales endpoint", () => {
   it("returns 200 for en translations", async () => {
     const request = {
       method: "GET",
-      url: "/locales/en/translation.json"
+      url: "/locales/en/translation.json",
     };
     const response = await server.inject(request);
     expect(response.statusCode).to.be.equal(200);
@@ -62,7 +63,7 @@ lab.experiment("locales endpoint", () => {
   it("returns 200 for fr translations", async () => {
     const request = {
       method: "GET",
-      url: "/locales/fr/translation.json"
+      url: "/locales/fr/translation.json",
     };
     const response = await server.inject(request);
     expect(response.statusCode).to.be.equal(200);
@@ -85,8 +86,8 @@ lab.experiment("stylesheets endpoint", () => {
       method: "POST",
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
-        toolRuntimeConfig: {}
-      }
+        toolRuntimeConfig: {},
+      },
     });
     const filename = require("../styles/hashMap.json").images;
     expect(response.result.stylesheets[0].name).to.be.equal(filename);
@@ -106,9 +107,9 @@ lab.experiment("rendering-info endpoint", () => {
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
         toolRuntimeConfig: {
-          displayOptions: {}
-        }
-      }
+          displayOptions: {},
+        },
+      },
     };
     const response = await server.inject(request);
     expect(response.statusCode).to.be.equal(200);

@@ -1,5 +1,5 @@
 const path = require("path");
-const Wreck = require("wreck");
+const Wreck = require("@hapi/wreck");
 const Joi = require("joi");
 
 const viewsDir = path.join(__dirname, "/../../views/");
@@ -24,7 +24,7 @@ module.exports = {
   options: {
     validate: {
       options: {
-        allowUnknown: true
+        allowUnknown: true,
       },
       payload: {
         item: Joi.object(),
@@ -35,16 +35,16 @@ module.exports = {
                 Joi.object().keys({
                   value: Joi.number().required(),
                   comparison: Joi.valid("="),
-                  unit: Joi.string().optional()
+                  unit: Joi.string().optional(),
                 })
               )
-              .max(1)
-          })
-        })
-      }
-    }
+              .max(1),
+          }),
+        }),
+      },
+    },
   },
-  handler: async function(request, h) {
+  handler: async function (request, h) {
     const item = request.payload.item;
     const width = request.payload.toolRuntimeConfig.size.width[0].value;
 
@@ -53,23 +53,23 @@ module.exports = {
       displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
       id: `q_infographic_${request.query._id}_${Math.floor(
         Math.random() * 100000
-      )}`.replace(/-/g, "")
+      )}`.replace(/-/g, ""),
     };
 
     const images = imageHelpers.getImagesForWidth(item.images.variants, width);
 
     // fetch the image via imageService in the correct width with assumed dpr of 2 for the screenshot
-    const imagesBase64StringPromises = images.map(image => {
+    const imagesBase64StringPromises = images.map((image) => {
       const imageUrl = imageHelpers.getImageUrlForWidthAndFormat(
         image,
         width,
         "png"
       );
       return Wreck.get(imageUrl)
-        .then(response => {
+        .then((response) => {
           return response.payload.toString("base64");
         })
-        .catch(err => {
+        .catch((err) => {
           return undefined;
         });
     });
@@ -86,7 +86,7 @@ module.exports = {
     context.imagesMarkup = nunjucksEnv.render(
       viewsDir + "images-inlined.html",
       {
-        images: images
+        images: images,
       }
     );
 
@@ -97,10 +97,10 @@ module.exports = {
 
     renderingInfo.stylesheets = [
       {
-        name: styleHashMap["images"]
-      }
+        name: styleHashMap["images"],
+      },
     ];
 
     return renderingInfo;
-  }
+  },
 };

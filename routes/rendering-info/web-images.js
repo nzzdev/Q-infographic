@@ -1,4 +1,4 @@
-const Boom = require("boom");
+const Boom = require("@hapi/boom");
 const Joi = require("joi");
 const fs = require("fs");
 const path = require("path");
@@ -15,7 +15,7 @@ const nunjucksEnv = new nunjucks.Environment();
 // hence we fetch the JSON schema...
 const schemaString = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../../resources/", "schema.json"), {
-    encoding: "utf-8"
+    encoding: "utf-8",
   })
 );
 const Ajv = require("ajv");
@@ -46,22 +46,22 @@ module.exports = {
   options: {
     validate: {
       options: {
-        allowUnknown: true
+        allowUnknown: true,
       },
       query: {
         width: Joi.number().required(),
         noCache: Joi.boolean(),
-        toolRuntimeConfig: Joi.object().optional()
+        toolRuntimeConfig: Joi.object().optional(),
       },
-      payload: validatePayload
-    }
+      payload: validatePayload,
+    },
   },
-  handler: async function(request, h) {
+  handler: async function (request, h) {
     const item = request.payload.item;
 
     const images = imageHelpers
       .getImagesForWidth(item.images.variants, request.query.width)
-      .map(image => {
+      .map((image) => {
         return imageHelpers.getImageWithUrlsForImageAndWidth(
           image,
           request.query.width,
@@ -72,7 +72,7 @@ module.exports = {
     const context = {
       item: item,
       images: images,
-      displayOptions: {}
+      displayOptions: {},
     };
 
     if (request.payload.toolRuntimeConfig) {
@@ -88,9 +88,9 @@ module.exports = {
     }
 
     const renderingInfo = {
-      markup: markup
+      markup: markup,
     };
 
     return renderingInfo;
-  }
+  },
 };

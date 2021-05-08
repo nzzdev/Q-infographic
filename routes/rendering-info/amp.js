@@ -1,4 +1,4 @@
-const Boom = require("boom");
+const Boom = require("@hapi/boom");
 const Joi = require("joi");
 const fs = require("fs");
 const path = require("path");
@@ -15,7 +15,7 @@ const nunjucksEnv = new nunjucks.Environment();
 // hence we fetch the JSON schema...
 const schemaString = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../../resources/", "schema.json"), {
-    encoding: "utf-8"
+    encoding: "utf-8",
   })
 );
 const Ajv = require("ajv");
@@ -49,20 +49,20 @@ module.exports = {
   options: {
     validate: {
       options: {
-        allowUnknown: true
+        allowUnknown: true,
       },
       query: {
-        noCache: Joi.boolean()
+        noCache: Joi.boolean(),
       },
-      payload: validatePayload
-    }
+      payload: validatePayload,
+    },
   },
-  handler: async function(request, h) {
+  handler: async function (request, h) {
     const item = request.payload.item;
 
     const images = imageHelpers
       .getImagesForWidth(item.images.variants, defaultWidth)
-      .map(image => {
+      .map((image) => {
         return {
           width: image.width,
           height: image.height,
@@ -70,15 +70,19 @@ module.exports = {
             w360: imageHelpers.getImageUrlForWidthAndFormat(image, 360, "png"),
             w560: imageHelpers.getImageUrlForWidthAndFormat(image, 560, "png"),
             w800: imageHelpers.getImageUrlForWidthAndFormat(image, 800, "png"),
-            w1000: imageHelpers.getImageUrlForWidthAndFormat(image, 1000, "png")
-          }
+            w1000: imageHelpers.getImageUrlForWidthAndFormat(
+              image,
+              1000,
+              "png"
+            ),
+          },
         };
       });
 
     const context = {
       item: item,
       displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
-      images: images
+      images: images,
     };
 
     let markup;
@@ -90,9 +94,9 @@ module.exports = {
     }
 
     const renderingInfo = {
-      markup: markup
+      markup: markup,
     };
 
     return renderingInfo;
-  }
+  },
 };
