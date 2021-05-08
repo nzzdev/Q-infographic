@@ -1,26 +1,26 @@
 function getMinWidths(variants) {
-  return variants.map(variant => {
+  return variants.map((variant) => {
     return variant.minWidth;
   });
 }
 
 function hasDefinedMinWidth(variants) {
-  const numberOfDefinedMinWidths = getMinWidths(variants).filter(minWidth => {
+  const numberOfDefinedMinWidths = getMinWidths(variants).filter((minWidth) => {
     return minWidth !== undefined;
   }).length;
   return numberOfDefinedMinWidths > 0;
 }
 
 function getValidMinWidths(variants, width) {
-  return getMinWidths(variants).filter(minWidth => {
+  return getMinWidths(variants).filter((minWidth) => {
     return width >= minWidth;
   });
 }
 
 function getImagesForWidth(variants, width) {
   // only use the variants that have one or more images
-  variants = variants.filter(variant => {
-    return variant.images.filter(image => image.url).length > 0;
+  variants = variants.filter((variant) => {
+    return variant.images.filter((image) => image.url).length > 0;
   });
 
   // if there is no defined minWidth we return all images
@@ -32,7 +32,7 @@ function getImagesForWidth(variants, width) {
 
   // otherwise the ones that are undefined are set to 0
   // as they are valid as long as no defined one is wider than the given width
-  variants = variants.map(variant => {
+  variants = variants.map((variant) => {
     if (variant.minWidth === undefined) {
       variant.minWidth = 0;
     }
@@ -47,7 +47,7 @@ function getImagesForWidth(variants, width) {
   })[0];
 
   return variants
-    .filter(variant => {
+    .filter((variant) => {
       return variant.minWidth === widestValidMinWidth; // variants minWidth needs to be the widest valid one
     })
     .reduce((images, variant) => {
@@ -73,14 +73,18 @@ function getImageWithUrlsForImageAndWidth(image, width, serveLosslessWebP) {
     urls: {
       png1x: getImageUrlForWidthAndFormat(image, width, "png"),
       png2x: getImageUrlForWidthAndFormat(image, width * 2, "png"),
+      png3x: getImageUrlForWidthAndFormat(image, width * 3, "png"),
+      png4x: getImageUrlForWidthAndFormat(image, width * 4, "png"),
       webp1x: getImageUrlForWidthAndFormat(image, width, format),
-      webp2x: getImageUrlForWidthAndFormat(image, width * 2, format)
-    }
+      webp2x: getImageUrlForWidthAndFormat(image, width * 2, format),
+      webp3x: getImageUrlForWidthAndFormat(image, width * 3, format),
+      webp4x: getImageUrlForWidthAndFormat(image, width * 4, format),
+    },
   };
 }
 
 module.exports = {
   getImagesForWidth: getImagesForWidth,
   getImageWithUrlsForImageAndWidth: getImageWithUrlsForImageAndWidth,
-  getImageUrlForWidthAndFormat: getImageUrlForWidthAndFormat
+  getImageUrlForWidthAndFormat: getImageUrlForWidthAndFormat,
 };
