@@ -23,10 +23,11 @@ before(async () => {
     server = Hapi.server({
       port: process.env.PORT || 3000,
       routes: {
-        cors: true
-      }
+        cors: true,
+      },
     });
     await server.register(require("@hapi/inert"));
+    server.validator(require("joi"));
     server.route(routes);
   } catch (err) {
     expect(err).to.not.exist();
@@ -66,12 +67,12 @@ lab.experiment("Q infographic dom tests", () => {
       method: "POST",
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
-        toolRuntimeConfig: {}
-      }
+        toolRuntimeConfig: {},
+      },
     });
 
     return elementCount(response.result.markup, "h3.s-q-item__title").then(
-      value => {
+      (value) => {
         expect(value).to.be.equal(1);
       }
     );
@@ -83,14 +84,14 @@ lab.experiment("Q infographic dom tests", () => {
       method: "POST",
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
-        toolRuntimeConfig: {}
-      }
+        toolRuntimeConfig: {},
+      },
     });
 
     return elementCount(
       response.result.markup,
       ".q-infographic-images-container"
-    ).then(value => {
+    ).then((value) => {
       expect(value).to.be.equal(1);
     });
   });
@@ -103,13 +104,13 @@ lab.experiment("Q infographic dom tests", () => {
       payload: {
         item: item,
         toolRuntimeConfig: {
-          size: { width: [{ value: 400, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 400, comparison: "=" }] },
+        },
+      },
     });
-    return getElements(response.result.markup, "img").then(elements => {
+    return getElements(response.result.markup, "img").then((elements) => {
       const altTag = `${item.title} - ${item.subtitle}`;
-      elements.forEach(element => {
+      elements.forEach((element) => {
         expect(element.alt).to.be.equals(altTag);
       });
     });
@@ -123,14 +124,14 @@ lab.experiment("Q infographic dom tests", () => {
       payload: {
         item: item,
         toolRuntimeConfig: {
-          size: { width: [{ value: 400, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 400, comparison: "=" }] },
+        },
+      },
     });
 
-    return getElements(response.result.markup, "img").then(elements => {
+    return getElements(response.result.markup, "img").then((elements) => {
       const altTag = `${item.title}`;
-      elements.forEach(element => {
+      elements.forEach((element) => {
         expect(element.alt).to.be.equals(altTag);
       });
     });
@@ -144,15 +145,15 @@ lab.experiment("Q infographic dom tests", () => {
         item: require("../resources/fixtures/data/hide-alt-tag.json"),
         toolRuntimeConfig: {
           displayOptions: {
-            hideTitle: true
+            hideTitle: true,
           },
-          size: { width: [{ value: 400, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 400, comparison: "=" }] },
+        },
+      },
     });
 
-    return getElements(response.result.markup, "img").then(elements => {
-      elements.forEach(element => {
+    return getElements(response.result.markup, "img").then((elements) => {
+      elements.forEach((element) => {
         expect(element.alt).to.be.equals(""); // alt tag is by default ""
       });
     });
@@ -167,9 +168,9 @@ lab.experiment("correct image selection based on width", () => {
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
         toolRuntimeConfig: {
-          size: { width: [{ value: 400, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 400, comparison: "=" }] },
+        },
+      },
     });
 
     const sourceElement = await getElement(
@@ -188,9 +189,9 @@ lab.experiment("correct image selection based on width", () => {
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
         toolRuntimeConfig: {
-          size: { width: [{ value: 399, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 399, comparison: "=" }] },
+        },
+      },
     });
 
     const sourceElements = await getElements(
@@ -216,9 +217,9 @@ lab.experiment("correct image selection based on width", () => {
       payload: {
         item: require("../resources/fixtures/data/2-variants-no-min-width.json"),
         toolRuntimeConfig: {
-          size: { width: [{ value: 399, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 399, comparison: "=" }] },
+        },
+      },
     });
 
     const pictureElements = await getElements(
@@ -237,8 +238,8 @@ lab.experiment("AMP", () => {
       method: "POST",
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
-        toolRuntimeConfig: {}
-      }
+        toolRuntimeConfig: {},
+      },
     });
 
     const validator = await amphtmlValidator.getInstance();
@@ -274,13 +275,14 @@ lab.experiment("images-inlined", () => {
       payload: {
         item: require("../resources/fixtures/data/2-variants.json"),
         toolRuntimeConfig: {
-          size: { width: [{ value: 400, comparison: "=" }] }
-        }
-      }
+          size: { width: [{ value: 400, comparison: "=" }] },
+        },
+      },
     });
 
     const imageElement = await getElement(response.result.markup, "img");
     const srcAttrParts = imageElement.getAttribute("src").split(",");
+
     expect(srcAttrParts[0]).to.be.equal("data:image/png;base64");
     const imageString = atob(srcAttrParts[1]);
     expect(imageString).to.startWith("PNG");

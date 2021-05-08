@@ -1,6 +1,5 @@
 const path = require("path");
 const fs = require("fs");
-const Joi = require("@hapi/joi");
 const UglifyJS = require("uglify-js");
 
 const viewsDir = path.join(__dirname, "/../../views/");
@@ -24,7 +23,7 @@ const ajv = new Ajv();
 // hence we fetch the JSON schema...
 const schemaString = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../../resources/", "schema.json"), {
-    encoding: "utf-8"
+    encoding: "utf-8",
   })
 );
 const validate = ajv.compile(schemaString);
@@ -52,12 +51,12 @@ module.exports = {
   options: {
     validate: {
       options: {
-        allowUnknown: true
+        allowUnknown: true,
       },
-      payload: validatePayload
-    }
+      payload: validatePayload,
+    },
   },
-  handler: async function(request, h) {
+  handler: async function (request, h) {
     const item = request.payload.item;
 
     const context = {
@@ -65,7 +64,7 @@ module.exports = {
       displayOptions: {},
       id: `q_infographic_${request.query._id}_${Math.floor(
         Math.random() * 100000
-      )}`.replace(/-/g, "")
+      )}`.replace(/-/g, ""),
     };
 
     if (request.payload.toolRuntimeConfig) {
@@ -83,7 +82,7 @@ module.exports = {
       const imagesResponse = await request.server.inject({
         method: "POST",
         url: `/rendering-info/web-images?width=${exactPixelWidth}`,
-        payload: request.payload
+        payload: request.payload,
       });
       context.imagesMarkup = imagesResponse.result.markup;
     } else {
@@ -107,7 +106,7 @@ module.exports = {
         queryParams.noCache = true; // set this if we do not have item state in DB as it will probably change
         requestBodyString = JSON.stringify({
           item: request.payload.item,
-          toolRuntimeConfig: request.payload.toolRuntimeConfig
+          toolRuntimeConfig: request.payload.toolRuntimeConfig,
         });
       }
 
@@ -121,15 +120,15 @@ module.exports = {
               queryParams,
               requestBodyString
             )
-          ).code
-        }
+          ).code,
+        },
       ];
     }
 
     renderingInfo.stylesheets = [
       {
-        name: styleHashMap["images"]
-      }
+        name: styleHashMap["images"],
+      },
     ];
 
     renderingInfo.markup = nunjucksEnv.render(
@@ -138,9 +137,9 @@ module.exports = {
     );
 
     renderingInfo.loaderConfig = {
-      polyfills: ["Promise", "fetch"]
+      polyfills: ["Promise", "fetch"],
     };
 
     return renderingInfo;
-  }
+  },
 };

@@ -1,5 +1,5 @@
 # Use following version of Node alpine as the base image
-FROM node:10-alpine
+FROM node:14-alpine
 
 # Set work directory for run/cmd
 WORKDIR /app

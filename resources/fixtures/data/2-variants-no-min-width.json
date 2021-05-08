@@ -6,13 +6,13 @@
       {
         "images": [
           {
-            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/300x200.png",
+            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/q-infographic/300x200.png",
             "key": "300x200.png",
             "width": 300,
             "height": 200
           },
           {
-            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/500x400.png",
+            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/q-infographic/500x400.png",
             "key": "500x400.png",
             "width": 500,
             "height": 600
@@ -22,7 +22,7 @@
       {
         "images": [
           {
-            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/800x500.png",
+            "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/q-infographic/800x500.png",
             "key": "800x500.png",
             "width": 800,
             "height": 500
