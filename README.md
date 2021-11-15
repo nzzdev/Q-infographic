@@ -1,6 +1,6 @@
 # Q-infographic [![Build Status](https://travis-ci.com/nzzdev/Q-infographic.svg?token=tYv1sxPNiVKviBpSHziC&branch=dev)](https://travis-ci.com/nzzdev/Q-infographic)
 
-**maintainer**: [philipkueng](https://github.com/philipkueng)
+**Maintainer**: [Nicolas Staub](https://github.com/fromdusttilldawn)
 
 Q infographic is one tool of the Q toolbox to display different graphics depending on their container size.
 Test it in the [Q Playground](https://q-playground.st.nzz.ch).
