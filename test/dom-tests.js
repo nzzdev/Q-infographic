@@ -228,7 +228,7 @@ lab.experiment("correct image selection based on width", () => {
   });
 });
 
-lab.experiment("AMP", () => {
+lab.experiment("AMP", { timeout: 10000 }, () => {
   it("should produce valid amp-html", async () => {
     const response = await server.inject({
       url: "/rendering-info/amp",
