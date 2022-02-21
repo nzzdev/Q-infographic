@@ -23,7 +23,7 @@
   "devDependencies": {
     "@hapi/code": "^8.0.3",
     "@hapi/lab": "^24.2.1",
-    "amphtml-validator": "^1.0.34",
+    "amphtml-validator": "^1.0.35",
     "atob": "^2.1.2",
     "autoprefixer": "^9.8.6",
     "cssnano": "^4.1.11",
