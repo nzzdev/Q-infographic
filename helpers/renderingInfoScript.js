@@ -24,6 +24,13 @@ function getScript(id, toolBaseUrl, method, queryParams, requestBodyString) {
   var ${dataObject} = {
     element: document.querySelector("#${id}")
   };
+  function debounce(func){
+    var timer;
+    return function(event){
+      if(timer) clearTimeout(timer);
+      timer = setTimeout(func,700,event);
+    };
+  }
   function ${functionName}() {
     fetch("${toolBaseUrl}/rendering-info/web-images?${querystring.stringify(
     queryParams
@@ -44,7 +51,7 @@ function getScript(id, toolBaseUrl, method, queryParams, requestBodyString) {
     ${dataObject}.width = ${dataObject}.element.getBoundingClientRect().width;
     ${functionName}();
   });
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', debounce(function() {
     requestAnimationFrame(function() {
       var newWidth = ${dataObject}.element.getBoundingClientRect().width;
       if (newWidth !== ${dataObject}.width) {
@@ -52,10 +59,10 @@ function getScript(id, toolBaseUrl, method, queryParams, requestBodyString) {
         ${functionName}();
       }
     });
-  });
+  }));
 `;
 }
 
 module.exports = {
-  getScript: getScript
+  getScript: getScript,
 };
