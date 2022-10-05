@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
+    "start": "npm run build && node dev.js",
     "test": "lab -a @hapi/code -c -P tests --verbose --leaks"
   },
   "author": "Beni Buess <beni.buess@nzz.ch>",
@@ -13,10 +14,10 @@
     "@hapi/boom": "^9.1.2",
     "@hapi/hapi": "^20.1.2",
     "@hapi/inert": "^6.0.3",
-    "joi": "^17.4.0",
     "@hapi/vision": "^6.0.1",
     "@hapi/wreck": "^17.1.0",
     "ajv": "^6.12.6",
+    "joi": "^17.4.0",
     "nunjucks": "^3.2.3",
     "uglify-js": "^3.13.5"
   },
